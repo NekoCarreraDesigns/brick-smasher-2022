@@ -11,6 +11,14 @@ class Game:
         self.display_surface = pygame.display.set_mode(
             (screen_width, screen_height))
         pygame.display.set_caption('BrickBasher')
+        self.bg = self.create_bg()
+
+    def create_bg(self):
+        bg_original = pygame.image.load(
+            './graphics/other/space-background.jpg').convert()
+        scaled_bg = pygame.transform.scale(
+            bg_original, (screen_width, screen_height))
+        return scaled_bg
 
     def run(self):
         last_time = time.time()
@@ -22,6 +30,8 @@ class Game:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
+
+            self.display_surface.blit(self.bg, (0, 0))
 
             pygame.display.update()
 
