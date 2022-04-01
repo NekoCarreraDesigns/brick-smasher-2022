@@ -18,7 +18,7 @@ color_legend = {
     '3': 'red',
     '4': 'orange',
     '5': 'purple',
-    '6': 'bronce',
+    '6': 'bronze',
     '7': 'grey',
 }
 
