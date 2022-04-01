@@ -9,7 +9,7 @@ class Game:
 
         pygame.init()
         self.display_surface = pygame.display.set_mode(
-            screen_width, screen_height)
+            (screen_width, screen_height))
         pygame.display.set_caption('BrickBasher')
 
     def run(self):
