@@ -12,7 +12,7 @@ block_map = [
     '            ',
     '            ']
 
-COLOR_LEGEND = {
+color_legend = {
     '1': 'blue',
     '2': 'green',
     '3': 'red',
