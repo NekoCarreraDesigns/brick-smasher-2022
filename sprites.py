@@ -1,4 +1,3 @@
-from turtle import window_height
 import pygame
 from settings import *
 
@@ -16,16 +15,16 @@ class Player(pygame.sprite.Sprite):
         self.speed = 400
         self.pos = pygame.math.Vector2(self.rect.topleft)
 
-        def input(self):
-            keys = pygame.key.get_pressed()
-            if keys[pygame.K_RIGHT]:
-                self.direction.x = 1
-            elif keys[pygame.K_LEFT]:
-                self.direction.x = -1
-            else:
-                self.direction.x = 0
+    def input(self):
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_RIGHT]:
+            self.direction.x = 1
+        elif keys[pygame.K_LEFT]:
+            self.direction.x = -1
+        else:
+            self.direction.x = 0
 
-        def update(self, dt):
-            self.input()
-            self.pos.x += self.direction.x * self.speed * dt
-            self.rect.x = round(self.pos.x)
+    def update(self, dt):
+        self.input()
+        self.pos.x += self.direction.x * self.speed * dt
+        self.rect.x = round(self.pos.x)
