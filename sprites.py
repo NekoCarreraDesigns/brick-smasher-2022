@@ -10,5 +10,5 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.Surface((screen_width // 10, screen_height // 20))
         self.image.fill('red')
 
-        self.rect = self.image.get_rect(center=(screen_width // 2, screen_height - 20
-                                                ))
+        self.rect = self.image.get_rect(midbottom=(
+            screen_width // 2, screen_height - 20))
