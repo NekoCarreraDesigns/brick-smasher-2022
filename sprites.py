@@ -14,6 +14,7 @@ class Player(pygame.sprite.Sprite):
         self.direction = pygame.math.Vector2()
         self.speed = 400
         self.pos = pygame.math.Vector2(self.rect.topleft)
+    # player input for movement
 
     def input(self):
         keys = pygame.key.get_pressed()
@@ -24,7 +25,17 @@ class Player(pygame.sprite.Sprite):
         else:
             self.direction.x = 0
 
+    def screen_constraint(self):
+        if self.rect.right > screen_width:
+            self.rect.right = screen_width
+            self.pos.x = self.rect.x
+        if self.rect.left < 0:
+            self.rect.left = 0
+            self.pos.x = self.rect.x
+
+    # update the game
     def update(self, dt):
         self.input()
         self.pos.x += self.direction.x * self.speed * dt
         self.rect.x = round(self.pos.x)
+        self.screen_constraint()
