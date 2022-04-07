@@ -64,9 +64,25 @@ class Ball(pygame.sprite.Sprite):
 
     def window_collision(self, direction):
         if direction == 'horizontal':
-            pass
+            if self.rect.left < 0:
+                self.rect.left = 0
+                self.pos.x = self.rect.x
+                self.direction.x *= -1
+
+            if self.rect.right > screen_width:
+                self.rect.right = screen_width
+                self.pos.x = self.rect.x
+                self.direction.x *= -1
+
         if direction == 'vertical':
-            pass
+            if self.rect.top < 0:
+                self.rect.top = 0
+                self.pos.y = self.rect.y
+                self.direction.y *= -1
+
+            if self.rect.bottom > screen_height:
+                self.active = False
+                self.direction.y = -1
 
     def collision(self):
         pass
