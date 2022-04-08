@@ -2,7 +2,7 @@ import pygame
 import sys
 import time
 from settings import *
-from sprites import Player, Ball
+from sprites import Player, Ball, Block
 
 
 class Game:
@@ -16,10 +16,11 @@ class Game:
         self.bg = self.create_bg()
         # sprite group
         self.all_sprites = pygame.sprite.Group()
+        self.block_sprites = pygame.sprite.Group()
         # sprite setup
         self.player = Player(self.all_sprites)
-        self.ball = Ball(self.all_sprites, self.player)
         self.stage_setup()
+        self.ball = Ball(self.all_sprites, self.player, self.block_sprites)
 
     def create_bg(self):
         bg_original = pygame.image.load(
@@ -32,10 +33,11 @@ class Game:
         # cycle through the rows in the block map
         for row_index, row in enumerate(block_map):
             for col_index, col in enumerate(row):
-                # find the x and y positions
-                x = col_index * (block_width + gap_size) + gap_size // 2
-                y = row_index * (block_height + gap_size) + gap_size // 2
-                Block(type, pos, groups)
+                if col != ' ':
+                    # find the x and y positions
+                    x = col_index * (block_width + gap_size) + gap_size // 2
+                    y = row_index * (block_height + gap_size) + gap_size // 2
+                    Block(col, (x, y), [self.all_sprites, self.block_sprites])
 
     def run(self):
         last_time = time.time()
