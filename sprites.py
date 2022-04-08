@@ -143,5 +143,5 @@ class Ball(pygame.sprite.Sprite):
 class Block(pygame.sprite.Sprite):
     def __init__(self, type, pos, groups):
         super().__init__(groups)
-        self.image = pygame.Surface((block_height, block_width))
+        self.image = pygame.Surface((block_width, block_height))
         self.rect = self.image.get_rect(topleft=pos)
