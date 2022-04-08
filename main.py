@@ -30,9 +30,12 @@ class Game:
 
     def stage_setup(self):
         # cycle through the rows in the block map
-        for row in block_map:
-            print(row)
-        # find the x and y positions
+        for row_index, row in enumerate(block_map):
+            for col_index, col in enumerate(row):
+                # find the x and y positions
+                x = col_index * (block_width + gap_size) + gap_size // 2
+                y = row_index * (block_height + gap_size) + gap_size // 2
+                Block(type, pos, groups)
 
     def run(self):
         last_time = time.time()
