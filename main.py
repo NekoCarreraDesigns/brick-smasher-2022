@@ -19,6 +19,7 @@ class Game:
         # sprite setup
         self.player = Player(self.all_sprites)
         self.ball = Ball(self.all_sprites, self.player)
+        self.stage_setup()
 
     def create_bg(self):
         bg_original = pygame.image.load(
@@ -26,6 +27,12 @@ class Game:
         scaled_bg = pygame.transform.scale(
             bg_original, (screen_width, screen_height))
         return scaled_bg
+
+    def stage_setup(self):
+        # cycle through the rows in the block map
+        for row in block_map:
+            print(row)
+        # find the x and y positions
 
     def run(self):
         last_time = time.time()
