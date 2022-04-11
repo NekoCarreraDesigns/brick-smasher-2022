@@ -4,10 +4,12 @@ from random import choice
 
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, groups):
+    def __init__(self, groups, surfacemaker):
         super().__init__(groups)
         # setup
-        self.image = pygame.Surface((screen_width // 10, screen_height // 20))
+        self.surfacemaker = surfacemaker
+        self.image = surfacemaker.get_surf(
+            'player', (screen_width // 10, screen_height // 20))
         self.image.fill('red')
         # position
         self.rect = self.image.get_rect(midbottom=(
@@ -148,9 +150,11 @@ class Ball(pygame.sprite.Sprite):
 
 
 class Block(pygame.sprite.Sprite):
-    def __init__(self, block_type, pos, groups):
+    def __init__(self, block_type, pos, groups, surfacemaker):
         super().__init__(groups)
-        self.image = pygame.Surface((block_width, block_height))
+        self.surfacemaker = surfacemaker
+        self.image = self.surfacemaker.get_surf(
+            block_type, (block_width, block_height))
         self.rect = self.image.get_rect(topleft=pos)
         self.old_rect = self.rect.copy()
 

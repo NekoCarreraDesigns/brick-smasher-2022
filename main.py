@@ -3,6 +3,7 @@ import sys
 import time
 from settings import *
 from sprites import Player, Ball, Block
+from surfacemaker import SurfaceMaker
 
 
 class Game:
@@ -18,7 +19,8 @@ class Game:
         self.all_sprites = pygame.sprite.Group()
         self.block_sprites = pygame.sprite.Group()
         # sprite setup
-        self.player = Player(self.all_sprites)
+        self.surfacemaker = SurfaceMaker()
+        self.player = Player(self.all_sprites, self.surfacemaker)
         self.stage_setup()
         self.ball = Ball(self.all_sprites, self.player, self.block_sprites)
 
@@ -37,7 +39,8 @@ class Game:
                     # find the x and y positions
                     x = col_index * (block_width + gap_size) + gap_size // 2
                     y = row_index * (block_height + gap_size) + gap_size // 2
-                    Block(col, (x, y), [self.all_sprites, self.block_sprites])
+                    Block(col, (x, y), [self.all_sprites,
+                          self.block_sprites], self.surfacemaker)
 
     def run(self):
         last_time = time.time()
