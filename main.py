@@ -3,7 +3,7 @@ import sys
 import time
 from settings import *
 from sprites import Player, Ball, Block
-from surfacemaker import SurfaceMaker
+from surfacemaker import *
 
 
 class Game:
