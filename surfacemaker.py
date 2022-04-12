@@ -5,20 +5,17 @@ from os import walk
 
 
 class SurfaceMaker:
-    def __init__(self):
-        for index, info in enumerate(walk('./graphics/blocks')):
-            if index == 0:
-                self.assets = {color: {} for color in info[1]}
-            else:
-                for image_name in info[2]:
-                    color_type = list(self.assets.keys())[index - 1]
-                    full_path = './graphics/blocks' + \
-                        f'/{color_type}/' + image_name
-                    surf = pygame.image.load(full_path).convert_alpha()
-                    self.assets[color_type][image_name.split('.')[0]] = surf
 
-    def get_surf(self, block_type, size):
+    def import_folder(path):
+        surface_list = []
+        for _, __, img_files in walk(path):
+            for image in img_files:
+                full_path = path + '/' + image
+                image_surf = pygame.image.load(full_path).convert()
+                surface_list.append(image_surf)
+        return surface_list
+
+    def get_surf(self, size):
         image = pygame.Surface(size)
-        sides = self.assets[block_type]
-        image.blit(sides['topleft'], (0, 0))
+        image.fill('blue')
         return image
